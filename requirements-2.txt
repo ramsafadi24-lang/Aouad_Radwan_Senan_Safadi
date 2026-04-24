@@ -1,0 +1,35 @@
+# MSBA 305 – E-Commerce Analytics Pipeline
+# Requirements file – Spring 2025/2026
+#
+# Install with:  pip install -r requirements.txt
+# Python version: 3.9 or higher (3.11 recommended)
+#
+# ── Core Data Processing ─────────────────────────────────────────────────────
+pandas>=2.0.0            # DataFrame operations, CSV I/O, SQL integration
+numpy>=1.24.0            # Numerical computations, array operations
+scipy>=1.10.0            # Statistical functions (outlier analysis)
+
+# ── File I/O ─────────────────────────────────────────────────────────────────
+openpyxl>=3.1.0          # Required engine for pd.read_excel() on .xlsx files
+xlrd>=2.0.1              # Legacy .xls support (included for compatibility)
+
+# ── API & HTTP ────────────────────────────────────────────────────────────────
+requests>=2.31.0         # REST API calls to DummyJSON products endpoint
+
+# ── Visualisation ────────────────────────────────────────────────────────────
+matplotlib>=3.7.0        # Core charting library; EDA charts and dashboard
+seaborn>=0.12.0          # Statistical chart styling
+plotly>=5.15.0           # Interactive charts (imported in environment setup)
+
+# ── Databases ────────────────────────────────────────────────────────────────
+# sqlite3 is part of the Python standard library — no pip install required.
+pymongo>=4.6.0           # MongoDB Atlas driver (Section 4.2 product storage)
+neo4j>=5.14.0            # Neo4j AuraDB driver (Section 4.2 graph storage)
+
+# ── Jupyter Environment ───────────────────────────────────────────────────────
+jupyter>=1.0.0           # Notebook server (skip if running in Google Colab)
+ipykernel>=6.25.0        # IPython kernel for Jupyter
+
+# ── Utilities ────────────────────────────────────────────────────────────────
+python-dateutil>=2.8.2   # Extended datetime parsing (used internally by pandas)
+pytz>=2023.3             # Timezone support

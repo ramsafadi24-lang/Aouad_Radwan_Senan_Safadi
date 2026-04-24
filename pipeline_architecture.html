@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @page {
+            size: A4 landscape;
+            margin: 0;
+            background-color: #0f172a;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 40px;
+            color: #f1f5f9;
+            background-color: #0f172a;
+        }
+        .container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #334155;
+            padding-bottom: 20px;
+        }
+        h1 {
+            margin: 0;
+            font-size: 24pt;
+            color: #38bdf8;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .architecture-grid {
+            display: table;
+            width: 100%;
+            border-spacing: 20px;
+        }
+        .layer {
+            display: table-row;
+        }
+        .layer-label {
+            display: table-cell;
+            width: 180px;
+            vertical-align: middle;
+            font-weight: bold;
+            font-size: 10pt;
+            color: #94a3b8;
+            text-transform: uppercase;
+            border-right: 2px solid #334155;
+            padding-right: 20px;
+        }
+        .layer-content {
+            display: table-cell;
+            vertical-align: middle;
+            padding: 15px 0;
+        }
+        .box-container {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
+        .box {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 15px;
+            width: 28%;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .box.source { border-top: 4px solid #f59e0b; }
+        .box.ingest { border-top: 4px solid #10b981; }
+        .box.clean  { border-top: 4px solid #3b82f6; }
+        .box.store  { border-top: 4px solid #8b5cf6; }
+        .box.query  { border-top: 4px solid #ec4899; }
+
+        .box-title {
+            font-size: 9pt;
+            color: #94a3b8;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .box-value {
+            font-size: 11pt;
+            font-family: 'Courier New', monospace;
+            color: #f8fafc;
+        }
+        .arrow {
+            text-align: center;
+            color: #475569;
+            font-size: 18pt;
+            margin: 5px 0;
+        }
+        .footer-stats {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 5px solid #38bdf8;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-label { font-size: 8pt; color: #94a3b8; text-transform: uppercase; }
+        .stat-val { font-size: 14pt; font-weight: bold; color: #38bdf8; }
+        
+        /* Flow Connectors */
+        .connector {
+            height: 30px;
+            width: 2px;
+            background: #334155;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Retail & Network Data Pipeline Architecture</h1>
+            <p style="color: #64748b;">Multi-Source ETL & Polyglot Persistence Engine</p>
+        </header>
+
+        <div class="architecture-grid">
+            <!-- Data Sources -->
+            <div class="layer">
+                <div class="layer-label">Data Sources</div>
+                <div class="layer-content">
+                    <div class="box-container">
+                        <div class="box source">
+                            <div class="box-title">XLSX</div>
+                            <div class="box-value">Online Retail</div>
+                        </div>
+                        <div class="box source">
+                            <div class="box-title">REST API</div>
+                            <div class="box-value">DummyJSON</div>
+                        </div>
+                        <div class="box source">
+                            <div class="box-title">TXT</div>
+                            <div class="box-value">SNAP Co-Purchase</div>
+                        </div>
+                    </div>
+                    <div class="arrow">↓</div>
+                </div>
+            </div>
+
+            <!-- Ingestion -->
+            <div class="layer">
+                <div class="layer-label">Ingestion Layer</div>
+                <div class="layer-content">
+                    <div class="box-container">
+                        <div class="box ingest">
+                            <div class="box-title">ingest_excel()</div>
+                            <div class="box-value">df_transactions_raw</div>
+                        </div>
+                        <div class="box ingest">
+                            <div class="box-title">requests.get()</div>
+                            <div class="box-value">df_products_raw</div>
+                        </div>
+                        <div class="box ingest">
+                            <div class="box-title">ingest_copurchase()</div>
+                            <div class="box-value">df_copurchase_raw</div>
+                        </div>
+                    </div>
+                    <div class="arrow">↓</div>
+                </div>
+            </div>
+
+            <!-- Transformation -->
+            <div class="layer">
+                <div class="layer-label">Cleaning & Transformation</div>
+                <div class="layer-content">
+                    <div class="box-container">
+                        <div class="box clean">
+                            <div class="box-title">15-Step Clean</div>
+                            <div class="box-value">df_transactions</div>
+                        </div>
+                        <div class="box clean">
+                            <div class="box-title">6-Step Clean</div>
+                            <div class="box-value">df_products</div>
+                        </div>
+                        <div class="box clean">
+                            <div class="box-title">3-Step Clean</div>
+                            <div class="box-value">df_copurchase</div>
+                        </div>
+                    </div>
+                    <div class="arrow">↓</div>
+                </div>
+            </div>
+
+            <!-- Storage -->
+            <div class="layer">
+                <div class="layer-label">Polyglot Storage</div>
+                <div class="layer-content">
+                    <div class="box-container">
+                        <div class="box store">
+                            <div class="box-title">Relational (SQLite)</div>
+                            <div class="box-value">transactions</div>
+                        </div>
+                        <div class="box store">
+                            <div class="box-title">Document (MongoDB)</div>
+                            <div class="box-value">products</div>
+                        </div>
+                        <div class="box store">
+                            <div class="box-title">Graph (Neo4j)</div>
+                            <div class="box-value">Product/Community</div>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 10px; font-size: 8pt; color: #64748b;">
+                        Analytical Fallback: copurchase_communities (SQLite)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-stats">
+            <div class="stat-item">
+                <div class="stat-label">Analytical Query Distribution</div>
+                <div class="stat-val">Q1-Q6 (SQL) | Q7-Q11 (NoSQL) | Q8 (Graph)</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Reporting Layer</div>
+                <div class="stat-val">9-Panel Dashboard</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Governance</div>
+                <div class="stat-val">v4.7 (transactions_anon)</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
